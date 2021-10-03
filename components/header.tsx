@@ -1,26 +1,33 @@
 import {
-  HStack,
   Link,
   Text,
   Flex,
   Button,
   ButtonGroup,
   Stack,
+  StyleProps,
+  Box,
+  IconButton,
+  Fade,
+  useDisclosure,
 } from '@chakra-ui/react';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { VscChromeClose } from 'react-icons/vsc';
 
 const NavLinks = () => {
   const links = ['Home', 'Game', 'Profile', 'About'];
 
   return (
     <Stack
-      direction="row"
+      direction={{ base: 'column', lg: 'row' }}
       justify="center"
       w="75%"
       alignItems="center"
-      fontSize="14px"
+      fontSize={{ base: '20px', lg: '14px' }}
       fontWeight="600"
       fontFamily="alliance, sans-serif"
-      spacing="55px"
+      spacing="45px"
+      h={{ base: '50%', lg: null }}
     >
       {links.map((link) => {
         return <Link href={link.toLocaleLowerCase()}>{link}</Link>;
@@ -31,12 +38,8 @@ const NavLinks = () => {
 
 const NavButtons = () => {
   const buttonsProps = {
-    colorScheme: 'none',
     _active: {
       transform: 'scale(0.9)',
-    },
-    _focus: {
-      outline: 'none',
     },
     w: '80px',
     h: '32px',
@@ -45,7 +48,7 @@ const NavButtons = () => {
   };
 
   return (
-    <ButtonGroup w="25%" justifyContent="flex-end" isAttached>
+    <ButtonGroup w={{ lg: '25%' }} justifyContent="flex-end" isAttached>
       <Button {...buttonsProps} bgColor="black" textColor="white">
         Sign up
       </Button>
@@ -56,19 +59,86 @@ const NavButtons = () => {
   );
 };
 
-const HeaderLogo = () => {
+const HeaderLogo = (props: StyleProps) => {
   return (
-    <Flex alignItems="center" w="25%" fontSize="20px">
+    <Flex alignItems="center" {...props}>
       <Text>Transcendence</Text>
     </Flex>
   );
 };
-const HeaderNav = () => {
+
+const NavMenuButton = ({ menuToggle, isOpen }) => {
   return (
-    <Stack bgColor="inherit" w="75%" direction="row">
-      <NavLinks />
-      <NavButtons />
-    </Stack>
+    <Box
+      right="2%"
+      top="13px"
+      position="fixed"
+      bgColor="transparent"
+      onClick={menuToggle}
+      display={{ base: 'block', lg: 'none' }}
+    >
+      <Fade in={!isOpen}>
+        <IconButton
+          position="fixed"
+          aria-label="open-menu"
+          icon={<GiHamburgerMenu size={20} />}
+        ></IconButton>
+      </Fade>
+      <Fade in={isOpen}>
+        <IconButton
+          aria-label="close-menu"
+          icon={<VscChromeClose size={20} />}
+        ></IconButton>
+      </Fade>
+    </Box>
+  );
+};
+
+const HeaderNav = () => {
+  const { isOpen, onToggle } = useDisclosure();
+
+  return (
+    <>
+      <Flex
+        pp="sdf"
+        p="0"
+        overflow="auto"
+        borderLeft={{ md: 'solid 1px white', lg: 'none' }}
+        bgColor="inherit"
+        w={{ base: 'full', md: '25%', lg: '75%' }}
+        h={{ base: 'full', lg: 'inherit' }}
+        position={{ base: 'fixed', lg: 'unset' }}
+        right={{ base: '0', lg: 'unset' }}
+        transform={{ base: !isOpen && 'translate3d(100%,0,0)', lg: 'none' }}
+        transition={{
+          base: 'transform 1s cubic-bezier(.16,1,.3,1)',
+          lg: undefined,
+        }}
+        justifyContent="center"
+      >
+        <Stack
+          direction={{ base: 'column', lg: 'row' }}
+          alignItems="center"
+          pb={{ base: '15px', lg: 0 }}
+          spacing={50}
+          w="full"
+        >
+          <HeaderLogo
+            w="full"
+            fontSize="20px"
+            position="relative"
+            display={{ base: 'flex', lg: 'none' }}
+            h="70px"
+            pl="10px"
+            borderBottom="solid 1px white"
+          />
+
+          <NavLinks />
+          <NavButtons />
+        </Stack>
+      </Flex>
+      <NavMenuButton isOpen={isOpen} menuToggle={onToggle} />
+    </>
   );
 };
 
@@ -83,7 +153,7 @@ const Header = () => {
         h="70px"
         px="3%"
       >
-        <HeaderLogo />
+        <HeaderLogo w="25%" fontSize="20px" />
         <HeaderNav />
       </Flex>
     </>
