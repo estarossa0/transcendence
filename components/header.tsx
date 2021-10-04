@@ -165,7 +165,7 @@ const HeaderNav = () => {
 
 const Header = () => {
   return (
-    <>
+    <header>
       <Flex
         position="fixed"
         width="100vw"
@@ -177,7 +177,7 @@ const Header = () => {
         <HeaderLogo w="25%" fontSize="20px" />
         <HeaderNav />
       </Flex>
-    </>
+    </header>
   );
 };
 
