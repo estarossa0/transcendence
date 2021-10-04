@@ -1,5 +1,4 @@
 import {
-  Link,
   Text,
   Flex,
   Button,
@@ -13,9 +12,17 @@ import {
 } from '@chakra-ui/react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { VscChromeClose } from 'react-icons/vsc';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+
+const useIsCurrentPage = (page: string, href: string): boolean => {
+  if (page === 'Home') page = '';
+  return `/${page.toLowerCase()}` === href;
+};
 
 const NavLinks = () => {
   const links = ['Home', 'Game', 'Profile', 'About'];
+  const router = useRouter();
 
   return (
     <Stack
@@ -23,16 +30,27 @@ const NavLinks = () => {
       justify="center"
       w="75%"
       alignItems="center"
-      fontSize={{ base: '20px', lg: '14px' }}
+      fontSize={{ base: '20px', lg: '16px' }}
       fontWeight="600"
       fontFamily="alliance, sans-serif"
       spacing="45px"
       h={{ base: '50%', lg: null }}
     >
       {links.map((link) => {
+        const isCurrentPage = useIsCurrentPage(link, router.pathname);
         return (
-          <Link key={link} href={link.toLocaleLowerCase()}>
-            {link}
+          <Link key={link} href={link === 'Home' ? '/' : link.toLowerCase()}>
+            <Text
+              bgClip={isCurrentPage ? 'text' : undefined}
+              bgGradient={
+                isCurrentPage ? 'linear(to-b, #60E3E7, white)' : undefined
+              }
+              cursor="pointer"
+              borderBottom="1px solid transparent"
+              _hover={{ borderBottom: '1px solid white' }}
+            >
+              {link}
+            </Text>
           </Link>
         );
       })}
@@ -104,7 +122,6 @@ const HeaderNav = () => {
   return (
     <>
       <Flex
-        pp="sdf"
         p="0"
         overflow="auto"
         borderLeft={{ md: 'solid 1px white', lg: 'none' }}
