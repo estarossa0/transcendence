@@ -30,7 +30,11 @@ const NavLinks = () => {
       h={{ base: '50%', lg: null }}
     >
       {links.map((link) => {
-        return <Link href={link.toLocaleLowerCase()}>{link}</Link>;
+        return (
+          <Link key={link} href={link.toLocaleLowerCase()}>
+            {link}
+          </Link>
+        );
       })}
     </Stack>
   );
