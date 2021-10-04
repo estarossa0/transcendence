@@ -81,7 +81,7 @@ const NavButtons = () => {
   );
 };
 
-const HeaderLogo = (props: StyleProps) => {
+const NavLogo = (props: StyleProps) => {
   return (
     <Flex alignItems="center" {...props}>
       <Text>Transcendence</Text>
@@ -116,7 +116,7 @@ const NavMenuButton = ({ menuToggle, isOpen }) => {
   );
 };
 
-const HeaderNav = () => {
+const NavMain = () => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -144,7 +144,7 @@ const HeaderNav = () => {
           spacing={50}
           w="full"
         >
-          <HeaderLogo
+          <NavLogo
             w="full"
             fontSize="20px"
             position="relative"
@@ -163,9 +163,9 @@ const HeaderNav = () => {
   );
 };
 
-const Header = () => {
+const NavBar = () => {
   return (
-    <header>
+    <nav>
       <Flex
         position="fixed"
         width="100vw"
@@ -174,11 +174,11 @@ const Header = () => {
         h="70px"
         px="3%"
       >
-        <HeaderLogo w="25%" fontSize="20px" />
-        <HeaderNav />
+        <NavLogo w="25%" fontSize="20px" />
+        <NavMain />
       </Flex>
-    </header>
+    </nav>
   );
 };
 
-export default Header;
+export default NavBar;
