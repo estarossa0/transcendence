@@ -1,9 +1,7 @@
-import { Box, Text } from '@chakra-ui/layout';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { MotionBox, MotionButton, MotionStack } from './motion/motionComponent';
-import { useDisclosure } from '@chakra-ui/hooks';
-import { useBreakpointValue } from '@chakra-ui/react';
+import { useBreakpointValue, Box, Text, useBoolean } from '@chakra-ui/react';
 
 const useIsCurrentPage = (page: string): boolean => {
   const href = useRouter().asPath;
@@ -11,13 +9,63 @@ const useIsCurrentPage = (page: string): boolean => {
   return `/${page.toLowerCase()}` === href;
 };
 
-const NavLinks = ({
+function NavLink({
+  page,
+  isOpen,
+  isPhone,
+}: {
+  page: string;
+  isOpen: boolean;
+  isPhone: boolean;
+}) {
+  const isCurrentPage = useIsCurrentPage(page);
+  const [hovering, setHovering] = useBoolean();
+
+  const linkBoxProps = {
+    onMouseEnter: () => setHovering.toggle(),
+    onMouseLeave: () => setHovering.toggle(),
+    initial: { transformOrigin: 'bottom' },
+    animate: {
+      transformOrigin: 'bottom',
+      scaleY: isOpen || !isPhone ? 1 : [0.9, 0.1, 0],
+    },
+  };
+
+  const linkTextProps = {
+    fontFamily: 'alata, sans-serif',
+    fontWeight: '400',
+    cursor: isCurrentPage ? 'unset' : 'pointer',
+    fontSize: '18px',
+    textColor: isOpen || isPhone ? 'black' : 'white',
+  };
+
+  const linkUnderlineProps = {
+    h: '1px',
+    bg: isOpen || isPhone ? 'black' : 'white',
+    initial: { transformOrigin: hovering ? 'right' : 'left' },
+    animate: {
+      transformOrigin: hovering ? 'right' : 'left',
+      scaleX: hovering || isCurrentPage ? 1 : 0,
+    },
+  };
+
+  return (
+    <MotionBox key={page} {...linkBoxProps}>
+      <Link href={page === 'Home' ? '/' : `/${page.toLowerCase()}`}>
+        <Text {...linkTextProps}>{page}</Text>
+      </Link>
+      <MotionBox {...linkUnderlineProps} />
+    </MotionBox>
+  );
+}
+
+function NavLinksStack({
   isPhone,
   isOpen,
 }: {
   isPhone: boolean;
   isOpen: boolean;
-}) => {
+}) {
   const navPages = ['Home', 'Game', 'Profile', 'About'];
 
   return (
@@ -30,57 +78,25 @@ const NavLinks = ({
       right={isPhone || isOpen ? 'unset' : '15px'}
     >
       {navPages.map((page) => {
-        const isCurrentPage = useIsCurrentPage(page);
-        const { isOpen: isHovering, onToggle } = useDisclosure();
-        return (
-          <MotionBox
-            onMouseEnter={() => onToggle()}
-            onMouseLeave={() => onToggle()}
-            initial={{ transformOrigin: 'bottom' }}
-            animate={{
-              transformOrigin: 'bottom',
-              scaleY: isOpen || !isPhone ? 1 : [0.9, 0.1, 0],
-            }}
-            key={page}
-          >
-            <Link href={page === 'Home' ? '/' : `/${page.toLowerCase()}`}>
-              <Text
-                fontFamily="alata, sans-serif"
-                fontWeight="400"
-                cursor={isCurrentPage ? 'unset' : 'pointer'}
-                fontSize="18px"
-                textColor={isOpen || isPhone ? 'black' : 'white'}
-              >
-                {page}
-              </Text>
-            </Link>
-            <MotionBox
-              h="1px"
-              bg={isOpen || isPhone ? 'black' : 'white'}
-              initial={{ transformOrigin: isHovering ? 'right' : 'left' }}
-              animate={{
-                transformOrigin: isHovering ? 'right' : 'left',
-                scaleX: isHovering || isCurrentPage ? 1 : 0,
-              }}
-            />
-          </MotionBox>
-        );
+        return <NavLink page={page} isOpen={isOpen} isPhone={isPhone} />;
       })}
     </MotionStack>
   );
-};
+}
 
-const NavButton = ({
-  onOpen,
-  onToggle,
+function NavButton({
   isOpen,
   isShowing,
+  setIsOpen,
 }: {
-  onOpen: () => void;
-  onToggle: () => void;
   isOpen: boolean;
   isShowing: boolean;
-}) => {
+  setIsOpen: {
+    on: () => void;
+    off: () => void;
+    toggle: () => void;
+  };
+}) {
   const buttonSizeProps = {
     borderRadius: '8px',
     w: '60px',
@@ -89,73 +105,74 @@ const NavButton = ({
     right: '15px',
   };
 
+  const buttonAnimatedBgProps = {
+    bg: 'white',
+    initial: { transformOrigin: isOpen ? 'bottom' : 'top' },
+    animate: {
+      transformOrigin: isOpen ? 'top' : 'bottom',
+      scaleY: isOpen ? 0 : 1,
+    },
+  };
+
+  const buttonTextProps = {
+    fontFamily: 'IBM Plex Sans Devanagari, sans-serif',
+    mt: '2px',
+    fontWeight: '400',
+    onMouseEnter: () => setIsOpen.on(),
+    onTap: () => setIsOpen.toggle(),
+    textColor: isOpen ? 'white' : 'black',
+  };
+
   return (
     <MotionBox display={isShowing || isOpen ? 'initial' : 'none'}>
       <MotionBox pos="absolute" {...buttonSizeProps} bg="Black" />
       <MotionBox
         pos="absolute"
         {...buttonSizeProps}
-        bg="white"
-        initial={{ transformOrigin: isOpen ? 'bottom' : 'top' }}
-        animate={{
-          transformOrigin: isOpen ? 'top' : 'bottom',
-          scaleY: isOpen ? 0 : 1,
-        }}
+        {...buttonAnimatedBgProps}
       />
-      <MotionButton
-        fontFamily="IBM Plex Sans Devanagari, sans-serif"
-        mt="2px"
-        fontWeight="400"
-        onMouseEnter={() => onOpen()}
-        onTap={() => onToggle()}
-        pos="absolute"
-        {...buttonSizeProps}
-        textColor={isOpen ? 'white' : 'black'}
-      >
+      <MotionButton {...buttonSizeProps} {...buttonTextProps} pos="absolute">
         MENU
       </MotionButton>
     </MotionBox>
   );
-};
+}
 
-const NavBar = () => {
-  const { isOpen, onClose, onOpen, onToggle } = useDisclosure();
+function NavBar() {
+  const [isOpen, setIsOpen] = useBoolean();
   const isPhone = useBreakpointValue({ base: true, md: false });
+
+  const navContainerProps = {
+    onMouseLeave: () => setIsOpen.off(),
+    w: isPhone ? '100px' : '150px',
+    h: '180px',
+    top: '30px',
+    right: '20px',
+  };
+
+  const navBgProps = {
+    animate: {
+      opacity: isOpen ? 1 : 0,
+      scale: isOpen ? 1 : [0.9, 0.8, 0.7, 0.6],
+    },
+    layout: true,
+    top: '0',
+    w: '100%',
+    h: '100%',
+    bg: 'white',
+    borderRadius: '20px',
+    display: isPhone || isOpen ? 'initial' : 'none',
+  };
 
   return (
     <nav>
-      <Box
-        onMouseLeave={() => onClose()}
-        w={isPhone ? '100px' : '150px'}
-        h="180px"
-        top="30px"
-        right="20px"
-        position="fixed"
-      >
-        <MotionBox
-          animate={{
-            opacity: isOpen ? 1 : 0,
-            scale: isOpen ? 1 : [0.9, 0.8, 0.7, 0.6],
-          }}
-          layout
-          pos="absolute"
-          top="0"
-          w="100%"
-          h="100%"
-          bg="white"
-          borderRadius="20px"
-          display={isPhone || isOpen ? 'initial' : 'none'}
-        ></MotionBox>
-        <NavLinks isPhone={isPhone} isOpen={isOpen} />
-        <NavButton
-          isShowing={isPhone}
-          onOpen={onOpen}
-          onToggle={onToggle}
-          isOpen={isOpen}
-        />
+      <Box pos="fixed" {...navContainerProps}>
+        <MotionBox pos="absolute" {...navBgProps}></MotionBox>
+        <NavLinksStack isPhone={isPhone} isOpen={isOpen} />
+        <NavButton isOpen={isOpen} isShowing={isPhone} setIsOpen={setIsOpen} />
       </Box>
     </nav>
   );
-};
+}
 
 export default NavBar;
