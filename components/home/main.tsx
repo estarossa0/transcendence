@@ -1,0 +1,18 @@
+import { Box, BoxProps, Text } from '@chakra-ui/layout';
+import { motion } from 'framer-motion';
+export const MotionBox = motion<BoxProps>(Box);
+
+export default function Main() {
+  return (
+    <main>
+      <Box
+        zIndex={-1}
+        pos="absolute"
+        className="main-container"
+        w="100vw"
+        h="100vh"
+        bgColor="#081120"
+      ></Box>
+    </main>
+  );
+}
