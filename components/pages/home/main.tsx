@@ -1,6 +1,5 @@
-import { Box, BoxProps, Text } from '@chakra-ui/layout';
-import { motion } from 'framer-motion';
-export const MotionBox = motion<BoxProps>(Box);
+import { Box } from '@chakra-ui/react';
+import Title from './title';
 
 export default function Main() {
   return (
@@ -13,15 +12,7 @@ export default function Main() {
         h="100vh"
         bgColor="#081120"
       >
-        <Text
-          textColor="white"
-          fontSize="40px"
-          pos="absolute"
-          top="50%"
-          right="50%"
-        >
-          HOME
-        </Text>
+        <Title />
       </Box>
     </main>
   );
