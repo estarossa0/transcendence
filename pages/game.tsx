@@ -1,6 +1,7 @@
 import NavMenu from '../components/nav-menu';
-import Main from '../components/pages/home/main';
-export default function Home() {
+import Main from '../components/pages/game/main';
+
+export default function Game() {
   return (
     <>
       <NavMenu />

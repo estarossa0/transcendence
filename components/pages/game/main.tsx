@@ -12,7 +12,17 @@ export default function Main() {
         w="100vw"
         h="100vh"
         bgColor="#081120"
-      ></Box>
+      >
+        <Text
+          textColor="white"
+          fontSize="40px"
+          pos="absolute"
+          top="50%"
+          right="50%"
+        >
+          GAME
+        </Text>
+      </Box>
     </main>
   );
 }
