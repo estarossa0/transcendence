@@ -1,4 +1,5 @@
 import { Text, VStack } from '@chakra-ui/react';
+import PlayButton from '../play-button';
 import SubTitle from './sub-title';
 
 function Title() {
@@ -8,7 +9,7 @@ function Title() {
     fontFamily: 'alata, sans-serif',
     textColor: 'white',
     lineHeight: '1',
-    top: '25%',
+    top: '35%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     w: 'fit-content',
@@ -25,6 +26,7 @@ function Title() {
       </Text>
       <Text>back to life</Text>
       <SubTitle />
+      <PlayButton />
     </VStack>
   );
 }

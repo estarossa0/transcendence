@@ -14,8 +14,8 @@ export default function Main() {
         bgColor="#081120"
         overflow="hidden"
       >
-        <Title />
         <Background />
+        <Title />
       </Box>
     </main>
   );
