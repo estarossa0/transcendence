@@ -1,10 +1,13 @@
-import NavMenu from '../components/nav-menu';
-import Main from '../components/pages/game/main';
+import NavMenu from "../components/nav-menu";
+import { NavProvider } from "../components/nav-menu/context";
+import Main from "../components/pages/game/main";
 
 export default function Game() {
   return (
     <>
-      <NavMenu />
+      <NavProvider>
+        <NavMenu />
+      </NavProvider>
       <Main />
     </>
   );

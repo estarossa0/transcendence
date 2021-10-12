@@ -1,29 +1,25 @@
-import { MotionStack } from '../motion/motionComponent';
-import NavLink from './nav-link';
+import { MotionStack } from "../motion/motionComponent";
+import { useNavStore } from "./context";
+import NavLink from "./nav-link";
 
-interface NavLinksStackProps {
-  isPhone: boolean;
-  isOpen: boolean;
-}
+interface NavLinksStackProps {}
 
 function NavLinksStack(props: NavLinksStackProps) {
-  const { isPhone, isOpen } = props;
+  const { isOpen } = useNavStore();
 
-  const navPages = ['Home', 'Game', 'Profile', 'About'];
+  const navPages = ["Home", "Game", "Profile", "About"];
 
   return (
     <MotionStack
       spacing="0"
       w="fit-content"
       pos="absolute"
-      top={isPhone || isOpen ? '50px' : '0px'}
-      left={isPhone || isOpen ? '15px' : 'unset'}
-      right={isPhone || isOpen ? 'unset' : '15px'}
+      top={isOpen ? "50px" : ["50px", "0px"]}
+      left={isOpen ? "15px" : ["15px", "unset"]}
+      right={isOpen ? "unset" : ["unset", "15px"]}
     >
       {navPages.map((page) => {
-        return (
-          <NavLink key={page} page={page} isOpen={isOpen} isPhone={isPhone} />
-        );
+        return <NavLink key={page} page={page} />;
       })}
     </MotionStack>
   );
