@@ -5,11 +5,17 @@ import SubTitle from './sub-title';
 function Title() {
   const TitleStackProps = {
     spacing: '0px',
-    fontSize: { base: '40px', md: '70px' },
-    fontFamily: 'alata, sans-serif',
+    fontSize: {
+      base: '40px',
+      sm: '60px',
+      md: '80px',
+      lg: '100px',
+      xl: '130px',
+    },
+    fontFamily: 'inter, sans-serif',
     textColor: 'white',
     lineHeight: '1',
-    top: '35%',
+    top: { base: '30%', md: '45%' },
     left: '50%',
     transform: 'translate(-50%, -50%)',
     w: 'fit-content',
@@ -17,9 +23,9 @@ function Title() {
 
   return (
     <VStack {...TitleStackProps} pos="absolute">
-      <Text pb={{ base: '15px', md: '20px' }}>Bringing</Text>
+      <Text pb="0.2em">Bringing</Text>
       <Text
-        fontSize={{ base: '30px', md: '50px' }}
+        fontSize={{ base: '25px', sm: '40px', md: '55px', lg: '70px' }}
         fontFamily="'Press Start 2P'"
       >
         PONG

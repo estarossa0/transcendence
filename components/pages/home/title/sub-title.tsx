@@ -21,11 +21,12 @@ function SubTitle() {
   };
 
   const subTitleBoxProps = {
-    pt: '1em',
-    pl: { base: '1em', md: '3em' },
-    fontSize: { base: '9px', md: '20px' },
+    pt: '0.3em',
+    fontSize: { base: '7px', sm: '10px', md: '13px', lg: '17px', xl: '20px' },
     lineHeight: '1.3em',
     overflow: 'hidden',
+    fontFamily: "'Work Sans', sans-serif",
+    fontWeight: { base: '500', md: '400' },
   };
   const animatedTextProps = {
     initial: 'hidden',
@@ -34,7 +35,7 @@ function SubTitle() {
   };
 
   return (
-    <Box {...subTitleBoxProps}>
+    <Box textAlign="center" {...subTitleBoxProps}>
       <MotionText {...animatedTextProps} custom={0}>
         Experience playing the 70s pong game in a modern way.
       </MotionText>

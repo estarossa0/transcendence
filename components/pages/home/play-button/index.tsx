@@ -4,14 +4,13 @@ function PlayButton() {
   return (
     <Box>
       <Button
-        mt={{ base: '10px', md: '20px', lg: '30' }}
         textColor="black"
         bg="white"
         fontSize={{ base: 'sm', md: 'lg', lg: 'x-large' }}
         fontWeight="500"
         fontFamily="inter, sans-serif"
-        w="4em"
-        h="2em"
+        w="4.2em"
+        h="1.9em"
       >
         PLAY
       </Button>

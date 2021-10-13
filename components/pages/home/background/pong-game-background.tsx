@@ -5,14 +5,14 @@ import { Box } from '@chakra-ui/react';
 import Ball from './ball';
 
 function PongGameBackground() {
-  const playersSize = '460px';
+  const playersSize = { base: '150px', sm: '170px', md: '300px', lg: '460px' };
 
   return (
     <Box>
       <Box
         pos="absolute"
-        bottom="-5%"
-        left="10%"
+        bottom={{ base: '18%', sm: '15%', md: '-5%' }}
+        left={{ base: '-5%', sm: '15%', md: '10%' }}
         width={playersSize}
         height={playersSize}
       >
@@ -20,14 +20,19 @@ function PongGameBackground() {
       </Box>
       <Box
         pos="absolute"
-        top="35%"
-        right="10%"
+        top={{ base: '47%', sm: '40%', md: '35%' }}
+        right={{ base: '-5%', sm: '10%', md: '10%' }}
         width={playersSize}
         height={playersSize}
       >
         <Image layout="responsive" src={player2} />
       </Box>
-      <Ball w="100px" pos="absolute" top="50%" left="50%" />
+      <Ball
+        w={{ base: '40px', md: '60px', lg: '75px' }}
+        pos="absolute"
+        top="55%"
+        left="45%"
+      />
     </Box>
   );
 }

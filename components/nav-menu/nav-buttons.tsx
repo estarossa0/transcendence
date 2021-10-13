@@ -31,8 +31,7 @@ function NavButton(props: NavButtonProps) {
   };
 
   const buttonTextProps = {
-    fontFamily: 'IBM Plex Sans Devanagari, sans-serif',
-    mt: '2px',
+    fontFamily: 'inter, sans-serif',
     fontWeight: '400',
     onMouseEnter: () => setIsOpen.on(),
     onTap: () => setIsOpen.toggle(),

@@ -32,10 +32,10 @@ function NavLink(props: NavLinkProps) {
   };
 
   const linkTextProps = {
-    fontFamily: 'alata, sans-serif',
+    fontFamily: 'inter, sans-serif',
     fontWeight: '400',
     cursor: isCurrentPage ? 'unset' : 'pointer',
-    fontSize: '18px',
+    fontSize: { base: '18px', lg: '20px', '2xl': '23px' },
     textColor: isOpen || isPhone ? 'black' : 'white',
   };
 
