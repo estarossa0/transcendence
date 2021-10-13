@@ -1,5 +1,3 @@
-import player1 from '../../../../public/player1.png';
-import player2 from '../../../../public/player2.png';
 import Image from 'next/image';
 import { Box } from '@chakra-ui/react';
 import Ball from './ball';
@@ -16,7 +14,7 @@ function PongGameBackground() {
         width={playersSize}
         height={playersSize}
       >
-        <Image layout="responsive" src={player1} />
+        <Image width="1920" height="1080" src="/player1.png" />
       </Box>
       <Box
         pos="absolute"
@@ -25,7 +23,7 @@ function PongGameBackground() {
         width={playersSize}
         height={playersSize}
       >
-        <Image layout="responsive" src={player2} />
+        <Image width="1920" height="1080" src="/player2.png" />
       </Box>
       <Ball
         w={{ base: '40px', md: '60px', lg: '75px' }}
