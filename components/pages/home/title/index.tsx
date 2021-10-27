@@ -22,7 +22,7 @@ function Title() {
   };
 
   return (
-    <VStack {...TitleStackProps} pos="absolute">
+    <VStack {...TitleStackProps} pos="absolute" userSelect="none">
       <Text pb="0.2em">Bringing</Text>
       <Text
         fontSize={{ base: '25px', sm: '40px', md: '55px', lg: '70px' }}

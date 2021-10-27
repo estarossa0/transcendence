@@ -1,36 +1,51 @@
-import Image from 'next/image';
-import { Box } from '@chakra-ui/react';
-import Ball from './ball';
+import { Box, useBreakpointValue } from '@chakra-ui/react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import React, { Suspense } from 'react';
+import Model from './pong-players-gltf';
+
+function Lights() {
+  return (
+    <>
+      <ambientLight intensity={0.1} />
+      <pointLight color="white" intensity={0.5} position={[0, 0, 100]} />
+      <pointLight color="white" position={[-8, 0, 0]} />
+      <directionalLight color="white" position={[1, 0, -1]} />
+      <OrbitControls autoRotate />
+    </>
+  );
+}
+
+function Scene() {
+  const breakpoint = useBreakpointValue({ base: 'base', sm: 'sm', md: 'md' });
+  const playersPosition = {
+    base: [0, 2, -1.5],
+    sm: [0, 2, -1.5],
+    md: [0, 5, -2.5],
+  };
+  const cameraPosition = { base: -7, sm: -7, md: -10 };
+  return (
+    <Canvas
+      camera={{
+        fov: 75,
+        near: 0.1,
+        far: 1000,
+        position: [cameraPosition[breakpoint], 0, 0],
+        up: [0, 0, 1],
+      }}
+    >
+      <Lights />
+      <Suspense fallback={null}>
+        <Model playersPosition={playersPosition[breakpoint]} />
+      </Suspense>
+    </Canvas>
+  );
+}
 
 function PongGameBackground() {
-  const playersSize = { base: '150px', sm: '170px', md: '300px', lg: '460px' };
-
   return (
-    <Box>
-      <Box
-        pos="absolute"
-        bottom={{ base: '18%', sm: '15%', md: '-5%' }}
-        left={{ base: '-5%', sm: '15%', md: '10%' }}
-        width={playersSize}
-        height={playersSize}
-      >
-        <Image width="1920" height="1080" src="/player1.png" />
-      </Box>
-      <Box
-        pos="absolute"
-        top={{ base: '47%', sm: '40%', md: '35%' }}
-        right={{ base: '-5%', sm: '10%', md: '10%' }}
-        width={playersSize}
-        height={playersSize}
-      >
-        <Image width="1920" height="1080" src="/player2.png" />
-      </Box>
-      <Ball
-        w={{ base: '40px', md: '60px', lg: '75px' }}
-        pos="absolute"
-        top="55%"
-        left="45%"
-      />
+    <Box name="three-scene" w="full" h="full" pos="absolute" top="0%">
+      <Scene />
     </Box>
   );
 }

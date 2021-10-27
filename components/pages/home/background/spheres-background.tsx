@@ -1,21 +1,22 @@
+import { Box } from '@chakra-ui/react';
 import Sphere from './sphere';
 
 function SpheresBackground() {
   return (
-    <>
+    <Box name="spheres-background">
       <Sphere
         pos="absolute"
         top="5%"
         right="10%"
-        w={['0px', '280px']}
-        h={['0px', '280px']}
+        w={['0px', '380px']}
+        h={['0px', '380px']}
       />
       <Sphere
         pos="absolute"
         bottom="-5%"
         left="-80px"
-        w={['0px', '280px', '380px']}
-        h={['0px', '280px', '380px']}
+        w={['0px', '0px', '380px']}
+        h={['0px', '0px', '380px']}
       />
       <Sphere
         pos="absolute"
@@ -24,7 +25,7 @@ function SpheresBackground() {
         w="180px"
         h="180px"
       />
-    </>
+    </Box>
   );
 }
 
