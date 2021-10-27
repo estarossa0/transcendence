@@ -17,13 +17,12 @@ function Lights() {
 }
 
 function Scene() {
-  const breakpoint = useBreakpointValue({ base: 'base', sm: 'sm', md: 'md' });
+  const breakpoint = useBreakpointValue({ base: 'base', md: 'md' });
   const playersPosition = {
     base: [0, 2, -1.5],
-    sm: [0, 2, -1.5],
     md: [0, 5, -2.5],
   };
-  const cameraPosition = { base: -7, sm: -7, md: -10 };
+  const cameraPosition = { base: -7, md: -10 };
   return (
     <Canvas
       camera={{
