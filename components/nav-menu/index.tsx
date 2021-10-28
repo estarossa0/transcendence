@@ -18,9 +18,12 @@ function NavMenu() {
   };
 
   const navBgProps = {
+    initial: false,
     animate: {
       opacity: isOpen ? 1 : 0,
-      scale: isOpen ? 1 : [0.9, 0.8, 0.7, 0.6],
+      scale: isOpen ? 1 : 0.6,
+      originY: 0.1,
+      originX: 0.6,
     },
     layout: true,
     top: '0',
@@ -32,13 +35,15 @@ function NavMenu() {
   };
 
   return (
-    <nav>
-      <Box pos="fixed" {...navContainerProps}>
-        <MotionBox pos="absolute" {...navBgProps}></MotionBox>
-        <NavLinksStack isPhone={isPhone} isOpen={isOpen} />
-        <NavButton isOpen={isOpen} isShowing={isPhone} setIsOpen={setIsOpen} />
-      </Box>
-    </nav>
+    <Box as="nav" pos="fixed" {...navContainerProps}>
+      <MotionBox
+        pos="absolute"
+        {...navBgProps}
+        transition={{ duration: 0.2, delay: !isOpen ? 0.2 : undefined }}
+      />
+      <NavLinksStack isPhone={isPhone} isOpen={isOpen} />
+      <NavButton isOpen={isOpen} isShowing={isPhone} setIsOpen={setIsOpen} />
+    </Box>
   );
 }
 

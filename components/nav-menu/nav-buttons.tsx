@@ -39,8 +39,16 @@ function NavButton(props: NavButtonProps) {
   };
 
   return (
-    <MotionBox display={isShowing || isOpen ? 'initial' : 'none'}>
-      <MotionBox pos="absolute" {...buttonSizeProps} bg="Black" />
+    <MotionBox
+      sx={{ '-webkit-tap-highlight-color': 'transparent' }}
+      display={isShowing || isOpen ? 'initial' : 'none'}
+    >
+      <MotionBox
+        pos="absolute"
+        {...buttonSizeProps}
+        borderRadius="9px"
+        bg="Black"
+      />
       <MotionBox
         pos="absolute"
         {...buttonSizeProps}

@@ -24,10 +24,10 @@ function NavLink(props: NavLinkProps) {
   const linkBoxProps = {
     onMouseEnter: () => setHovering.toggle(),
     onMouseLeave: () => setHovering.toggle(),
-    initial: { transformOrigin: 'bottom' },
+    initial: { transformOrigin: 'bottom', scaleY: 0 },
     animate: {
       transformOrigin: 'bottom',
-      scaleY: isOpen || !isPhone ? 1 : [0.9, 0.1, 0],
+      scaleY: isOpen || !isPhone ? 1 : 0,
     },
   };
 
