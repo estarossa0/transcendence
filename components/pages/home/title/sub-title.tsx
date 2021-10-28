@@ -7,7 +7,7 @@ const variantResolver = (extraDelay: number) => {
     transition: {
       ease: [0.455, 0.03, 0.515, 0.955],
       duration: 0.6,
-      delay: 0.4 + extraDelay,
+      delay: 1.5 + extraDelay,
     },
   };
 };
