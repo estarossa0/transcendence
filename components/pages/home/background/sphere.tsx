@@ -5,7 +5,7 @@ import { Box, BoxProps } from '@chakra-ui/react';
 function Sphere(props: BoxProps) {
   return (
     <Box {...props}>
-      <Image layout="responsive" src={sphere} />
+      <Image priority sizes="50vw" layout="responsive" src={sphere} />
     </Box>
   );
 }
