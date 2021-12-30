@@ -40,7 +40,7 @@ function NavButton(props: NavButtonProps) {
 
   return (
     <MotionBox
-      sx={{ '-webkit-tap-highlight-color': 'transparent' }}
+      sx={{ WebkitTapHighlightColor: 'transparent' }}
       display={isShowing || isOpen ? 'initial' : 'none'}
     >
       <MotionBox
