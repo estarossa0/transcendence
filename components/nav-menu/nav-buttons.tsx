@@ -33,8 +33,6 @@ function NavButton(props: NavButtonProps) {
   const buttonTextProps = {
     fontFamily: 'inter, sans-serif',
     fontWeight: '400',
-    onMouseEnter: () => setIsOpen.on(),
-    onTap: () => setIsOpen.toggle(),
     textColor: isOpen ? 'white' : 'black',
   };
 
@@ -42,6 +40,8 @@ function NavButton(props: NavButtonProps) {
     <MotionBox
       sx={{ WebkitTapHighlightColor: 'transparent' }}
       display={isShowing || isOpen ? 'initial' : 'none'}
+      onMouseEnter={() => setIsOpen.on()}
+      onTap={() => setIsOpen.toggle()}
     >
       <MotionBox
         pos="absolute"
