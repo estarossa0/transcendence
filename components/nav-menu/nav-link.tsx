@@ -9,6 +9,35 @@ interface NavLinkProps {
   isPhone: boolean;
 }
 
+const NavLinkItem = ({
+  page,
+  isOpen,
+  isPhone,
+  isCurrentPage,
+}: NavLinkProps & { isCurrentPage: boolean }) => {
+  const linkTextProps = {
+    fontFamily: 'inter, sans-serif',
+    fontWeight: '400',
+    cursor: isCurrentPage ? 'unset' : 'pointer',
+    fontSize: { base: '18px', lg: '20px', '2xl': '23px' },
+    textColor: (isOpen || isPhone) && page !== 'login' ? 'black' : 'white',
+  };
+
+  if (page === 'login') {
+    return (
+      <Link href="/api/auth/login">
+        <Text {...linkTextProps}>Login</Text>
+      </Link>
+    );
+  }
+
+  return (
+    <Link href={page === 'Home' ? '/' : `/${page.toLowerCase()}`}>
+      <Text {...linkTextProps}>{page}</Text>
+    </Link>
+  );
+};
+
 function useIsCurrentPage(page: string): boolean {
   const href = useRouter().asPath;
   if (page === 'Home') page = '';
@@ -31,17 +60,9 @@ function NavLink(props: NavLinkProps) {
     },
   };
 
-  const linkTextProps = {
-    fontFamily: 'inter, sans-serif',
-    fontWeight: '400',
-    cursor: isCurrentPage ? 'unset' : 'pointer',
-    fontSize: { base: '18px', lg: '20px', '2xl': '23px' },
-    textColor: isOpen || isPhone ? 'black' : 'white',
-  };
-
   const linkUnderlineProps = {
     h: '1px',
-    bg: isOpen || isPhone ? 'black' : 'white',
+    bg: (isOpen || isPhone) && page !== 'login' ? 'black' : 'white',
     initial: { transformOrigin: hovering ? 'right' : 'left' },
     animate: {
       transformOrigin: hovering ? 'right' : 'left',
@@ -51,9 +72,12 @@ function NavLink(props: NavLinkProps) {
 
   return (
     <MotionBox {...linkBoxProps}>
-      <Link href={page === 'Home' ? '/' : `/${page.toLowerCase()}`}>
-        <Text {...linkTextProps}>{page}</Text>
-      </Link>
+      <NavLinkItem
+        page={page}
+        isOpen={isOpen}
+        isPhone={isPhone}
+        isCurrentPage={isCurrentPage}
+      />
       <MotionBox {...linkUnderlineProps} />
     </MotionBox>
   );
