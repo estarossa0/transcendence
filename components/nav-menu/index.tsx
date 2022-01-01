@@ -1,22 +1,24 @@
+import { useUser } from '@auth0/nextjs-auth0';
 import { Box, useBoolean, useBreakpointValue } from '@chakra-ui/react';
 import { MotionBox } from '../motion/motionComponent';
 import NavButton from './nav-buttons';
+import NavLink from './nav-link';
 import NavLinksStack from './nav-menu-stack';
+
+interface NavMenuLinksProps {
+  isOpen: boolean;
+  isPhone: boolean;
+  setIsOpen: {
+    readonly on: () => void;
+    readonly off: () => void;
+    readonly toggle: () => void;
+  };
+}
 
 interface NavMenuProps {}
 
-function NavMenu() {
-  const [isOpen, setIsOpen] = useBoolean();
-  const isPhone = useBreakpointValue({ base: true, md: false });
-
-  const navContainerProps = {
-    onMouseLeave: () => setIsOpen.off(),
-    w: isPhone ? '100px' : '150px',
-    h: '180px',
-    top: '30px',
-    right: '20px',
-  };
-
+const NavMenuLinks = ({ isOpen, isPhone, setIsOpen }: NavMenuLinksProps) => {
+  const { user, isLoading } = useUser();
   const navBgProps = {
     initial: false,
     animate: {
@@ -34,8 +36,17 @@ function NavMenu() {
     display: isPhone || isOpen ? 'initial' : 'none',
   };
 
+  if (isLoading) return null;
+
+  if (!user)
+    return (
+      <Box spacing="0" w="fit-content" pos="absolute" right="15px">
+        <NavLink isOpen={true} isPhone={true} page="login" />
+      </Box>
+    );
+
   return (
-    <Box as="nav" pos="fixed" {...navContainerProps}>
+    <>
       <MotionBox
         pos="absolute"
         {...navBgProps}
@@ -43,6 +54,25 @@ function NavMenu() {
       />
       <NavLinksStack isPhone={isPhone} isOpen={isOpen} />
       <NavButton isOpen={isOpen} isShowing={isPhone} setIsOpen={setIsOpen} />
+    </>
+  );
+};
+
+function NavMenu() {
+  const [isOpen, setIsOpen] = useBoolean();
+  const isPhone = useBreakpointValue({ base: true, md: false });
+
+  const navContainerProps = {
+    onMouseLeave: () => setIsOpen.off(),
+    w: isPhone ? '100px' : '150px',
+    h: '180px',
+    top: '30px',
+    right: '20px',
+  };
+
+  return (
+    <Box as="nav" pos="fixed" {...navContainerProps}>
+      <NavMenuLinks isOpen={isOpen} isPhone={isPhone} setIsOpen={setIsOpen} />
     </Box>
   );
 }
