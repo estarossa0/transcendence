@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import { MotionText } from '../../../motion/motionComponent';
+import { MotionText } from 'components/motion/motionComponent';
 
 const variantResolver = (extraDelay: number) => {
   return {

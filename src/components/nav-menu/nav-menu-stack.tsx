@@ -1,4 +1,4 @@
-import { MotionStack } from '../motion/motionComponent';
+import { MotionStack } from 'components/motion/motionComponent';
 import NavLink from './nav-link';
 
 interface NavLinksStackProps {

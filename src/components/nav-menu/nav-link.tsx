@@ -1,7 +1,7 @@
 import { Text, useBoolean } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { MotionBox } from '../motion/motionComponent';
+import { MotionBox } from 'components/motion/motionComponent';
 
 interface NavLinkProps {
   page: string;

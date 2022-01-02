@@ -1,4 +1,4 @@
-import { MotionBox, MotionButton } from '../motion/motionComponent';
+import { MotionBox, MotionButton } from 'components/motion/motionComponent';
 
 interface NavButtonProps {
   isOpen: boolean;

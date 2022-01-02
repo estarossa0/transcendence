@@ -1,6 +1,6 @@
 import { useUser } from '@auth0/nextjs-auth0';
 import { Box, useBoolean, useBreakpointValue } from '@chakra-ui/react';
-import { MotionBox } from '../motion/motionComponent';
+import { MotionBox } from 'components/motion/motionComponent';
 import NavButton from './nav-buttons';
 import NavLink from './nav-link';
 import NavLinksStack from './nav-menu-stack';
