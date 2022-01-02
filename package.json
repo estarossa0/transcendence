@@ -1,0 +1,19 @@
+{
+  "name": "transcendence",
+  "author": "arraji",
+  "license": "ISC",
+  "scripts": {
+    "dev:client": "npm run dev --workspace=client"
+  },
+  "workspaces": [
+    "client"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estarossa0/transcendence.git"
+  },
+  "bugs": {
+    "url": "https://github.com/estarossa0/transcendence/issues"
+  },
+  "homepage": "https://github.com/estarossa0/transcendence#readme"
+}
