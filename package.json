@@ -4,6 +4,9 @@
   "license": "MIT",
   "scripts": {
     "dev:client": "npm run dev --workspace=client",
+    "dev:server": "npm run start:dev --workspace=server",
+    "build": "npm run build --workspaces",
+    "start": "npm run start --workspaces",
     "lint": "eslint \"client/**/*.{ts,tsx,js}\" \"server/**/*.{ts,js}\" --ignore-pattern 'server/dist/*' --fix",
     "format": "prettier --write \"client/**/*.{ts,tsx,js}\" \"server/**/*.{ts,js}\""
   },
@@ -16,7 +19,8 @@
     "prettier": "^2.4.1"
   },
   "workspaces": [
-    "client"
+    "client",
+    "server"
   ],
   "repository": {
     "type": "git",

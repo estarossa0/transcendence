@@ -1,0 +1,9 @@
+# Local
+.env
+dist
+
+# Node.js
+node_modules/
+
+# IDE - VSCode
+.vscode/*
