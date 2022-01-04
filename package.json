@@ -1,34 +1,33 @@
 {
-  "private": true,
+  "name": "transcendence",
+  "author": "arraji",
+  "license": "MIT",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "@auth0/nextjs-auth0": "^1.6.2",
-    "@chakra-ui/react": "^1.6.8",
-    "@emotion/react": "^11.4.1",
-    "@emotion/styled": "^11.3.0",
-    "@react-three/drei": "^7.16.0",
-    "@react-three/fiber": "^7.0.16",
-    "@types/three": "^0.133.1",
-    "framer-motion": "^4.1.17",
-    "jotai": "^1.4.0",
-    "next": "latest",
-    "next-images": "^1.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-icons": "4.2.0",
-    "three": "^0.133.1",
-    "typescript": "^4.4.3"
+    "dev:client": "npm run dev --workspace=client",
+    "dev:server": "npm run start:dev --workspace=server",
+    "build": "npm run build --workspaces",
+    "start": "npm run start --workspaces",
+    "lint": "eslint \"client/**/*.{ts,tsx,js}\" \"server/**/*.{ts,js}\" --ignore-pattern 'server/dist/*' --fix",
+    "format": "prettier --write \"client/**/*.{ts,tsx,js}\" \"server/**/*.{ts,js}\""
   },
   "devDependencies": {
-    "@types/react": "^17.0.26",
-    "autoprefixer": "^10.2.6",
-    "eslint-config-next": "11.1.2",
-    "next-transpile-modules": "^8.0.0",
-    "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4"
-  }
+    "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.4.1"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estarossa0/transcendence.git"
+  },
+  "bugs": {
+    "url": "https://github.com/estarossa0/transcendence/issues"
+  },
+  "homepage": "https://github.com/estarossa0/transcendence#readme"
 }
