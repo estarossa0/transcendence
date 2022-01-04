@@ -1,9 +1,19 @@
 {
   "name": "transcendence",
   "author": "arraji",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
-    "dev:client": "npm run dev --workspace=client"
+    "dev:client": "npm run dev --workspace=client",
+    "lint": "eslint \"client/**/*.{ts,tsx,js}\" \"server/**/*.{ts,js}\" --ignore-pattern 'server/dist/*' --fix",
+    "format": "prettier --write \"client/**/*.{ts,tsx,js}\" \"server/**/*.{ts,js}\""
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.4.1"
   },
   "workspaces": [
     "client"
