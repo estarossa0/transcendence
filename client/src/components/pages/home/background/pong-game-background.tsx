@@ -1,8 +1,8 @@
-import { Box, useBreakpointValue } from '@chakra-ui/react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import React, { Suspense } from 'react';
-import Model from './pong-players-gltf';
+import { Box, useBreakpointValue } from "@chakra-ui/react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import React, { Suspense } from "react";
+import Model from "./pong-players-gltf";
 
 function Lights() {
   return (
@@ -17,7 +17,7 @@ function Lights() {
 }
 
 function Scene() {
-  const breakpoint = useBreakpointValue({ base: 'base', md: 'md' });
+  const breakpoint = useBreakpointValue({ base: "base", md: "md" });
   const playersPosition = {
     base: [0, 2, -1.5],
     md: [0, 5, -2.5],

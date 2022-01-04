@@ -1,7 +1,7 @@
-import { useGLTF } from '@react-three/drei';
-import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
-import { useFrame, Vector3 } from '@react-three/fiber';
-import { useRef } from 'react';
+import { useGLTF } from "@react-three/drei";
+import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
+import { useFrame, Vector3 } from "@react-three/fiber";
+import { useRef } from "react";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -20,10 +20,10 @@ function easeOutCirc(x: number) {
 let frame = 0;
 
 function Model(
-  props: JSX.IntrinsicElements['group'] & { playersPosition: number[] }
+  props: JSX.IntrinsicElements["group"] & { playersPosition: number[] },
 ) {
   const groupRef = useRef<THREE.Group>();
-  const { nodes } = useGLTF('/players.glb') as unknown as GLTFResult;
+  const { nodes } = useGLTF("/players.glb") as unknown as GLTFResult;
   const { playersPosition } = props;
   useFrame(() => {
     frame += frame <= 100 ? 1 : 0;
@@ -56,6 +56,6 @@ function Model(
   );
 }
 
-useGLTF.preload('/players.glb');
+useGLTF.preload("/players.glb");
 
 export default Model;

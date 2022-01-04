@@ -1,6 +1,6 @@
-import { Box } from '@chakra-ui/react';
-import Title from './title';
-import Background from './background';
+import { Box } from "@chakra-ui/react";
+import Title from "./title";
+import Background from "./background";
 
 export default function Main() {
   return (

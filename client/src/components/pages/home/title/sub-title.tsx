@@ -1,5 +1,5 @@
-import { Box } from '@chakra-ui/react';
-import { MotionText } from 'components/motion/motionComponent';
+import { Box } from "@chakra-ui/react";
+import { MotionText } from "components/motion/motionComponent";
 
 const variantResolver = (extraDelay: number) => {
   return {
@@ -15,22 +15,22 @@ const variantResolver = (extraDelay: number) => {
 function SubTitle() {
   const variants = {
     hidden: {
-      y: '200%',
+      y: "200%",
     },
     visible: variantResolver,
   };
 
   const subTitleBoxProps = {
-    pt: '0.3em',
-    fontSize: { base: '7px', sm: '10px', md: '13px', lg: '17px', xl: '20px' },
-    lineHeight: '1.3em',
-    overflow: 'hidden',
+    pt: "0.3em",
+    fontSize: { base: "7px", sm: "10px", md: "13px", lg: "17px", xl: "20px" },
+    lineHeight: "1.3em",
+    overflow: "hidden",
     fontFamily: "'Work Sans', sans-serif",
-    fontWeight: { base: '500', md: '400' },
+    fontWeight: { base: "500", md: "400" },
   };
   const animatedTextProps = {
-    initial: 'hidden',
-    animate: 'visible',
+    initial: "hidden",
+    animate: "visible",
     variants: variants,
   };
 

@@ -1,7 +1,7 @@
-import { Text, useBoolean } from '@chakra-ui/react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { MotionBox } from 'components/motion/motionComponent';
+import { Text, useBoolean } from "@chakra-ui/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { MotionBox } from "components/motion/motionComponent";
 
 interface NavLinkProps {
   page: string;
@@ -16,14 +16,14 @@ const NavLinkItem = ({
   isCurrentPage,
 }: NavLinkProps & { isCurrentPage: boolean }) => {
   const linkTextProps = {
-    fontFamily: 'inter, sans-serif',
-    fontWeight: '400',
-    cursor: isCurrentPage ? 'unset' : 'pointer',
-    fontSize: { base: '18px', lg: '20px', '2xl': '23px' },
-    textColor: (isOpen || isPhone) && page !== 'login' ? 'black' : 'white',
+    fontFamily: "inter, sans-serif",
+    fontWeight: "400",
+    cursor: isCurrentPage ? "unset" : "pointer",
+    fontSize: { base: "18px", lg: "20px", "2xl": "23px" },
+    textColor: (isOpen || isPhone) && page !== "login" ? "black" : "white",
   };
 
-  if (page === 'login') {
+  if (page === "login") {
     return (
       <Link href="/api/auth/login">
         <Text {...linkTextProps}>Login</Text>
@@ -32,7 +32,7 @@ const NavLinkItem = ({
   }
 
   return (
-    <Link href={page === 'Home' ? '/' : `/${page.toLowerCase()}`}>
+    <Link href={page === "Home" ? "/" : `/${page.toLowerCase()}`}>
       <Text {...linkTextProps}>{page}</Text>
     </Link>
   );
@@ -40,7 +40,7 @@ const NavLinkItem = ({
 
 function useIsCurrentPage(page: string): boolean {
   const href = useRouter().asPath;
-  if (page === 'Home') page = '';
+  if (page === "Home") page = "";
   return `/${page.toLowerCase()}` === href;
 }
 
@@ -53,19 +53,19 @@ function NavLink(props: NavLinkProps) {
   const linkBoxProps = {
     onMouseEnter: () => setHovering.toggle(),
     onMouseLeave: () => setHovering.toggle(),
-    initial: { transformOrigin: 'bottom', scaleY: 0 },
+    initial: { transformOrigin: "bottom", scaleY: 0 },
     animate: {
-      transformOrigin: 'bottom',
+      transformOrigin: "bottom",
       scaleY: isOpen || !isPhone ? 1 : 0,
     },
   };
 
   const linkUnderlineProps = {
-    h: '1px',
-    bg: (isOpen || isPhone) && page !== 'login' ? 'black' : 'white',
-    initial: { transformOrigin: hovering ? 'right' : 'left' },
+    h: "1px",
+    bg: (isOpen || isPhone) && page !== "login" ? "black" : "white",
+    initial: { transformOrigin: hovering ? "right" : "left" },
     animate: {
-      transformOrigin: hovering ? 'right' : 'left',
+      transformOrigin: hovering ? "right" : "left",
       scaleX: hovering || isCurrentPage ? 1 : 0,
     },
   };

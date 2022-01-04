@@ -1,9 +1,9 @@
-import { useUser } from '@auth0/nextjs-auth0';
-import { Box, useBoolean, useBreakpointValue } from '@chakra-ui/react';
-import { MotionBox } from 'components/motion/motionComponent';
-import NavButton from './nav-buttons';
-import NavLink from './nav-link';
-import NavLinksStack from './nav-menu-stack';
+import { useUser } from "@auth0/nextjs-auth0";
+import { Box, useBoolean, useBreakpointValue } from "@chakra-ui/react";
+import { MotionBox } from "components/motion/motionComponent";
+import NavButton from "./nav-buttons";
+import NavLink from "./nav-link";
+import NavLinksStack from "./nav-menu-stack";
 
 interface NavMenuLinksProps {
   isOpen: boolean;
@@ -14,8 +14,6 @@ interface NavMenuLinksProps {
     readonly toggle: () => void;
   };
 }
-
-interface NavMenuProps {}
 
 const NavMenuLinks = ({ isOpen, isPhone, setIsOpen }: NavMenuLinksProps) => {
   const { user, isLoading } = useUser();
@@ -28,12 +26,12 @@ const NavMenuLinks = ({ isOpen, isPhone, setIsOpen }: NavMenuLinksProps) => {
       originX: 0.6,
     },
     layout: true,
-    top: '0',
-    w: '100%',
-    h: '100%',
-    bg: 'white',
-    borderRadius: '20px',
-    display: isPhone || isOpen ? 'initial' : 'none',
+    top: "0",
+    w: "100%",
+    h: "100%",
+    bg: "white",
+    borderRadius: "20px",
+    display: isPhone || isOpen ? "initial" : "none",
   };
 
   if (isLoading) return null;
@@ -64,10 +62,10 @@ function NavMenu() {
 
   const navContainerProps = {
     onMouseLeave: () => setIsOpen.off(),
-    w: isPhone ? '100px' : '150px',
-    h: '180px',
-    top: '30px',
-    right: '20px',
+    w: isPhone ? "100px" : "150px",
+    h: "180px",
+    top: "30px",
+    right: "20px",
   };
 
   return (
@@ -78,4 +76,3 @@ function NavMenu() {
 }
 
 export default NavMenu;
-export type { NavMenuProps };
