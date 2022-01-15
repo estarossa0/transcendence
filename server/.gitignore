@@ -7,3 +7,8 @@ node_modules/
 
 # IDE - VSCode
 .vscode/*
+
+# Prisma
+*.db
+*.db-journal
+migrations
