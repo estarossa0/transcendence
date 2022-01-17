@@ -5,7 +5,9 @@ import {
   Param,
   Post,
   UnprocessableEntityException,
+  UseGuards,
 } from "@nestjs/common";
+import { SecretAuthGuard } from "./secret-auth.guard";
 import { UsersService } from "./users.service";
 
 @Controller()
@@ -13,6 +15,7 @@ export class UsersController {
   constructor(private readonly user: UsersService) {}
 
   @Post(":id")
+  @UseGuards(SecretAuthGuard)
   async newLoggin(@Param("id") id: string, @Body("user") user) {
     if (!user || !user.nickname) throw new UnprocessableEntityException();
 
