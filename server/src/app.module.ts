@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { UsersModule } from "./users/users.module";
 import { RouterModule } from "@nestjs/core";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
   imports: [
@@ -10,6 +11,9 @@ import { RouterModule } from "@nestjs/core";
         module: UsersModule,
       },
     ]),
+    ConfigModule.forRoot({
+      cache: true,
+    }),
     UsersModule,
   ],
 })

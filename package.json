@@ -29,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/estarossa0/transcendence/issues"
   },
-  "homepage": "https://github.com/estarossa0/transcendence#readme"
+  "homepage": "https://github.com/estarossa0/transcendence#readme",
+  "prisma": {
+    "schema": "./server/src/prisma/schema.prisma"
+  }
 }
