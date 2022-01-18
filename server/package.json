@@ -13,8 +13,11 @@
     "@nestjs/common": "^8.2.4",
     "@nestjs/config": "^1.1.6",
     "@nestjs/core": "^8.2.4",
+    "@nestjs/graphql": "^9.1.2",
     "@nestjs/platform-express": "^8.2.4",
     "@prisma/client": "^3.8.1",
+    "apollo-server-express": "^3.6.1",
+    "graphql": "^15.8.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.1",
     "ts-morph": "^13.0.2"
