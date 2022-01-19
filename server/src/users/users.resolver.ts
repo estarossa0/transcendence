@@ -6,9 +6,7 @@ import {
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { GqlAuthGuard } from "src/auth/auth.guard";
-import { requestUser } from "./dto/user-types";
 import { user } from "./models/users.model";
-import { CurrentUser } from "./users.decorator";
 import { UsersService } from "./users.service";
 
 @Resolver(() => user)
@@ -23,21 +21,14 @@ export class UserResolver {
     return user;
   }
 
-  @Query(() => user)
-  async me(@CurrentUser() reqUser: requestUser) {
-    const user = await this.userService.getOne({ id: reqUser.sub });
-    if (!user) throw new NotFoundException();
-    return user;
-  }
-
   @Mutation(() => user)
   async changeDisplayName(
+    @Args("id") id: string,
     @Args("newName") newName: string,
-    @CurrentUser() reqUser: requestUser,
   ) {
     const user = this.userService
       .updateUser({
-        where: { id: reqUser.sub },
+        where: { id: id },
         data: { name: { set: newName } },
       })
       .catch((err: PrismaClientKnownRequestError) => {
