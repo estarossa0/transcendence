@@ -21,7 +21,7 @@ export class UsersController {
 
     const createdUser = await this.user.createUser({
       id: id,
-      name: user.nickname,
+      displayName: user.nickname,
     });
 
     if (!createdUser)

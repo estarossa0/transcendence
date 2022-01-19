@@ -29,7 +29,7 @@ export class UserResolver {
     const user = this.userService
       .updateUser({
         where: { id: id },
-        data: { name: { set: newName } },
+        data: { displayName: { set: newName } },
       })
       .catch((err: PrismaClientKnownRequestError) => {
         throw new InternalServerErrorException(
