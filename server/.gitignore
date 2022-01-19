@@ -12,3 +12,6 @@ node_modules/
 *.db
 *.db-journal
 migrations
+
+# Graphql
+*.graphql
