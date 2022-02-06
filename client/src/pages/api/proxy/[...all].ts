@@ -1,18 +1,27 @@
 import { getAccessToken } from "@auth0/nextjs-auth0";
+import { NextApiRequest, NextApiResponse } from "next";
 import httpProxyMiddleware from "next-http-proxy-middleware";
 
-async function handler(req, res) {
-  const { accessToken } = await getAccessToken(req, res, {
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};
+
+async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const response = await getAccessToken(req, res, {
     authorizationParams: {
       audience: process.env.AUTH0_AUDIENCE || "",
     },
     scopes: ["openid", "profile"],
-  });
+  }).catch(() => null);
 
-  return httpProxyMiddleware(req, res, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
+  httpProxyMiddleware(req, res, {
+    headers: response
+      ? {
+          Authorization: `Bearer ${response.accessToken}`,
+        }
+      : {},
     pathRewrite: [
       {
         patternStr: "^/api/proxy",
@@ -20,6 +29,7 @@ async function handler(req, res) {
       },
     ],
     target: process.env.API_URL || "",
+    ws: true,
   });
 }
 
