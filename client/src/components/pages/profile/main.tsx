@@ -1,6 +1,26 @@
-import { Box, BoxProps, Text } from "@chakra-ui/layout";
-import { motion } from "framer-motion";
-export const MotionBox = motion<BoxProps>(Box);
+import { Box, Container, Text, Center } from "@chakra-ui/react";
+import Profile from ".";
+import SpheresBackground from "../home/background/spheres-background";
+
+const ProfileContainer = () => {
+  return (
+    <Container
+      h="80%"
+      pos="relative"
+      mt="50px"
+      bgColor="white"
+      maxW="container.lg"
+      rounded="md"
+    >
+      <Text fontFamily="itim" fontSize="25px" p="3">
+        Your profile
+      </Text>
+      <Center>
+        <Profile />
+      </Center>
+    </Container>
+  );
+};
 
 export default function Main() {
   return (
@@ -12,16 +32,10 @@ export default function Main() {
         w="100vw"
         h="100vh"
         bgColor="#081120"
+        overflow="hidden"
       >
-        <Text
-          textColor="white"
-          fontSize="40px"
-          pos="absolute"
-          top="50%"
-          right="50%"
-        >
-          PROFILE
-        </Text>
+        <SpheresBackground />
+        <ProfileContainer />
       </Box>
     </main>
   );
