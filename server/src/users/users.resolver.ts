@@ -9,6 +9,9 @@ import { GqlAuthGuard } from "src/auth/auth.guard";
 import { user } from "./models/users.model";
 import { UsersService } from "./users.service";
 import { CurrentUser } from "./users.decorator";
+import { GraphQLUpload, FileUpload } from "graphql-upload";
+import { createWriteStream } from "fs";
+import { unlink } from "fs/promises";
 
 @Resolver(() => user)
 @UseGuards(GqlAuthGuard)
@@ -38,5 +41,27 @@ export class UserResolver {
         );
       });
     return user;
+  }
+
+  @Mutation(() => Boolean)
+  async changeAvatar(
+    @Args({ name: "file", type: () => GraphQLUpload })
+    { createReadStream }: FileUpload,
+    @CurrentUser("sub") id: string,
+  ): Promise<boolean> {
+    return new Promise((resolve, reject) =>
+      createReadStream()
+        .pipe(createWriteStream(`./public/${id}`))
+        .on("finish", () => resolve(true))
+        .on("error", () => reject(false)),
+    );
+  }
+
+  @Mutation(() => Boolean)
+  async deleteAvatar(@CurrentUser("sub") id: string): Promise<boolean> {
+    await unlink(`./public/${id}`).catch(() => {
+      throw new NotFoundException();
+    });
+    return true;
   }
 }

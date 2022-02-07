@@ -5,6 +5,7 @@ import httpProxyMiddleware from "next-http-proxy-middleware";
 export const config = {
   api: {
     externalResolver: true,
+    bodyParser: false,
   },
 };
 

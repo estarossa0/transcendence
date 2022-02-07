@@ -13,6 +13,7 @@
     "@react-three/drei": "^7.16.0",
     "@react-three/fiber": "^7.0.16",
     "@types/three": "^0.133.1",
+    "@urql/exchange-multipart-fetch": "^0.1.14",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "graphql": "^16.2.0",
