@@ -49,7 +49,7 @@ export class UserResolver {
   ): Promise<boolean> {
     return new Promise((resolve, reject) =>
       createReadStream()
-        .pipe(createWriteStream(`./files/${filename}`))
+        .pipe(createWriteStream(`./public/${filename}`))
         .on("finish", () => resolve(true))
         .on("error", () => reject(false)),
     );
