@@ -11,6 +11,7 @@ import { UsersService } from "./users.service";
 import { CurrentUser } from "./users.decorator";
 import { GraphQLUpload, FileUpload } from "graphql-upload";
 import { createWriteStream } from "fs";
+import { unlink } from "fs/promises";
 
 @Resolver(() => user)
 @UseGuards(GqlAuthGuard)
@@ -54,5 +55,13 @@ export class UserResolver {
         .on("finish", () => resolve(true))
         .on("error", () => reject(false)),
     );
+  }
+
+  @Mutation(() => Boolean)
+  async deleteAvatar(@CurrentUser("sub") id: string): Promise<boolean> {
+    await unlink(`./public/${id}`).catch(() => {
+      throw new NotFoundException();
+    });
+    return true;
   }
 }
