@@ -1,6 +1,7 @@
 # Local
 .env
 dist
+public
 
 # Node.js
 node_modules/

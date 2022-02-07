@@ -9,6 +9,8 @@ import { GqlAuthGuard } from "src/auth/auth.guard";
 import { user } from "./models/users.model";
 import { UsersService } from "./users.service";
 import { CurrentUser } from "./users.decorator";
+import { GraphQLUpload, FileUpload } from "graphql-upload";
+import { createWriteStream } from "fs";
 
 @Resolver(() => user)
 @UseGuards(GqlAuthGuard)
@@ -38,5 +40,18 @@ export class UserResolver {
         );
       });
     return user;
+  }
+
+  @Mutation(() => Boolean)
+  async uploadFile(
+    @Args({ name: "file", type: () => GraphQLUpload })
+    { createReadStream, filename }: FileUpload,
+  ): Promise<boolean> {
+    return new Promise((resolve, reject) =>
+      createReadStream()
+        .pipe(createWriteStream(`./files/${filename}`))
+        .on("finish", () => resolve(true))
+        .on("error", () => reject(false)),
+    );
   }
 }
