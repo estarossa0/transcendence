@@ -45,11 +45,12 @@ export class UserResolver {
   @Mutation(() => Boolean)
   async changeAvatar(
     @Args({ name: "file", type: () => GraphQLUpload })
-    { createReadStream, filename }: FileUpload,
+    { createReadStream }: FileUpload,
+    @CurrentUser("sub") id: string,
   ): Promise<boolean> {
     return new Promise((resolve, reject) =>
       createReadStream()
-        .pipe(createWriteStream(`./public/${filename}`))
+        .pipe(createWriteStream(`./public/${id}`))
         .on("finish", () => resolve(true))
         .on("error", () => reject(false)),
     );
