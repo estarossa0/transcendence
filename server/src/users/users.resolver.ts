@@ -43,7 +43,7 @@ export class UserResolver {
   }
 
   @Mutation(() => Boolean)
-  async uploadFile(
+  async changeAvatar(
     @Args({ name: "file", type: () => GraphQLUpload })
     { createReadStream, filename }: FileUpload,
   ): Promise<boolean> {
