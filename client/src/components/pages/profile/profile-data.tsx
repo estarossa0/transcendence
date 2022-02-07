@@ -15,7 +15,7 @@ import { User } from "hooks";
 import DisplayNameBox from "./display-name";
 
 const IdBox = ({ user }: { user: User | null }) => {
-  const { onCopy } = useClipboard("auth|543543543543");
+  const { onCopy } = useClipboard(user?.id || "");
   const toast = useToast({
     title: "Copied",
     variant: "subtle",
