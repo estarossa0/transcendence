@@ -3,7 +3,6 @@ import {
   Flex,
   Text,
   IconButton,
-  Button,
   useClipboard,
   useToast,
   Skeleton,
@@ -13,9 +12,10 @@ import React from "react";
 import { MdContentCopy } from "react-icons/md";
 import { userAtom } from ".";
 import { User } from "hooks";
+import DisplayNameBox from "./display-name";
 
 const IdBox = ({ user }: { user: User | null }) => {
-  const { onCopy } = useClipboard("auth|543543543543");
+  const { onCopy } = useClipboard(user?.id || "");
   const toast = useToast({
     title: "Copied",
     variant: "subtle",
@@ -61,44 +61,6 @@ const IdBox = ({ user }: { user: User | null }) => {
             aria-label="copy"
             icon={<MdContentCopy />}
           />
-        </Flex>
-      </Container>
-    </Box>
-  );
-};
-
-const DisplayNameBox = ({ user }: { user: User | null }) => {
-  const Container = user ? Box : Skeleton;
-
-  return (
-    <Box mt="25px" w="full">
-      <Text fontSize="20px" color="#0496FF" fontFamily="ubuntu">
-        Display name
-      </Text>
-      <Container w="70%" rounded="md">
-        <Flex
-          mt="2"
-          justify="space-between"
-          w="full"
-          p="1"
-          pl="4"
-          bgColor="#EDEDED"
-          textColor="#595959"
-          rounded="md"
-        >
-          <Text
-            as="span"
-            w="80%"
-            p="0.5"
-            textOverflow="ellipsis"
-            whiteSpace="nowrap"
-            overflow="hidden"
-          >
-            {user?.displayName}
-          </Text>
-          <Button size="sm" textColor="#FF0062" _focus={{}}>
-            Update
-          </Button>
         </Flex>
       </Container>
     </Box>

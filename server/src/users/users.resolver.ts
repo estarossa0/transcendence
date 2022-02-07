@@ -8,6 +8,7 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { GqlAuthGuard } from "src/auth/auth.guard";
 import { user } from "./models/users.model";
 import { UsersService } from "./users.service";
+import { CurrentUser } from "./users.decorator";
 
 @Resolver(() => user)
 @UseGuards(GqlAuthGuard)
@@ -23,8 +24,8 @@ export class UserResolver {
 
   @Mutation(() => user)
   async changeDisplayName(
-    @Args("id") id: string,
     @Args("newName") newName: string,
+    @CurrentUser("sub") id,
   ) {
     const user = this.userService
       .updateUser({
