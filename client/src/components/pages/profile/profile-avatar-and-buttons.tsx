@@ -1,11 +1,13 @@
 import { Box, Avatar, Button, Input, Text } from "@chakra-ui/react";
 import { useUpdateAvatarMutation } from "hooks/updateAvatar";
+import { useDeleteAvatarMutation } from "hooks/useDeleteAvatarMutation";
 import { useAtomValue } from "jotai/utils";
 import { ChangeEvent, useState } from "react";
 import { userAtom } from ".";
 
 const AvatarConfig = () => {
   const [, updateAvatar] = useUpdateAvatarMutation();
+  const [, deleteAvatar] = useDeleteAvatarMutation();
   const user = useAtomValue(userAtom);
   const [time, setTime] = useState(new Date().getTime());
   const [error, setError] = useState<string | null>(null);
@@ -66,6 +68,9 @@ const AvatarConfig = () => {
           accept="image/*"
         />
         <Button
+          onClick={() =>
+            deleteAvatar().finally(() => setTime(new Date().getTime()))
+          }
           _active={{
             transform: "scale(0.9)",
           }}
