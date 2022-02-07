@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { User } from "hooks";
 import ErrorBox from "./error-box";
 import DisplayNameUpdateButton from "./display-name-button";
+import { useUpdateDiplayNameMutation } from "hooks/useUpdateDiplayNameMutation";
 
 const DisplayNameFormik: React.FC<{
   user: User | null;
@@ -15,6 +16,7 @@ const DisplayNameFormik: React.FC<{
   useEffect(() => {
     setDisplayName(user?.displayName);
   }, [user?.displayName]);
+  const [, uptadeDisplayName] = useUpdateDiplayNameMutation();
 
   return (
     <Formik
@@ -23,8 +25,9 @@ const DisplayNameFormik: React.FC<{
         input: Yup.string().max(15).required("Display name can't be empty"),
       })}
       onSubmit={({ input }) => {
-        if (!isUpdating) return;
+        if (!isUpdating || !input) return;
         off();
+        uptadeDisplayName({ name: input });
       }}
     >
       <Form>{children}</Form>
