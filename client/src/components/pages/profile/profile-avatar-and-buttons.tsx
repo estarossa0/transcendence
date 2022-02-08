@@ -103,7 +103,6 @@ const TabsPanels = () => {
       <Button _focus={{}} size="md" m="3" textColor="#0496FF">
         Information
       </Button>
-      <br />
       <Button _focus={{}} size="md" m="3" textColor="#757780">
         Friends
       </Button>
