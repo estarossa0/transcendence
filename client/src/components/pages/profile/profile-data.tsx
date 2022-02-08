@@ -84,9 +84,10 @@ const ProfileData = () => {
     <Box w="full">
       <Center flexDirection="column">
         <Box
-          w={{ base: "full", sm: "60%" }}
+          w={{ base: "full", sm: "60%", md: "full" }}
           mt={{ base: "0", md: "20px" }}
           mr={{ sm: "55px", md: "0" }}
+          minW="200px"
         >
           <Information />
         </Box>

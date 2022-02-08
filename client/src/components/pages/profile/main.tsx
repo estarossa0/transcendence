@@ -1,4 +1,4 @@
-import { Box, Container, Text, Center } from "@chakra-ui/react";
+import { Box, Container, Text } from "@chakra-ui/react";
 import Profile from ".";
 import SpheresBackground from "../home/background/spheres-background";
 
@@ -9,7 +9,12 @@ const ProfileContainer = () => {
       pos="relative"
       mt={{ base: "90px", md: "50px" }}
       bgColor="white"
-      maxW={{ base: "535px", lg: "container.md", "2xl": "container.lg" }}
+      maxW={{
+        base: "full",
+        md: "534px",
+        lg: "container.md",
+        "2xl": "container.lg",
+      }}
       rounded={{ base: undefined, md: "md" }}
       borderTopRadius={{ base: "60px", md: undefined }}
     >
