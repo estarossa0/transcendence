@@ -6,6 +6,7 @@ import {
   useClipboard,
   useToast,
   Skeleton,
+  Center,
 } from "@chakra-ui/react";
 import { useAtomValue } from "jotai/utils";
 import React from "react";
@@ -25,13 +26,13 @@ const IdBox = ({ user }: { user: User | null }) => {
   const Container = user ? Box : Skeleton;
 
   return (
-    <Box mt="25px" w="full">
+    <Box mt="0" w="full">
       <Text fontSize="20px" color="#0496FF" fontFamily="ubuntu">
         ID
       </Text>
-      <Container w="70%" rounded="md">
+      <Container w={{ base: "full", lg: "70%" }}>
         <Flex
-          mt="2"
+          mt={{ base: "0", md: "2" }}
           justify="space-between"
           w="full"
           p="1"
@@ -80,10 +81,16 @@ const Information = () => {
 
 const ProfileData = () => {
   return (
-    <Box w="60%">
-      <Box w="full" mt="20px">
-        <Information />
-      </Box>
+    <Box w="full">
+      <Center flexDirection="column">
+        <Box
+          w={{ base: "full", sm: "60%" }}
+          mt={{ base: "0", md: "20px" }}
+          mr={{ sm: "55px", md: "0" }}
+        >
+          <Information />
+        </Box>
+      </Center>
     </Box>
   );
 };

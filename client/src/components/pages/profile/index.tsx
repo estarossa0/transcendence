@@ -34,7 +34,14 @@ const Profile = () => {
     );
 
   return (
-    <Stack w="80%" h="80%" mx="45px" direction="row">
+    <Stack
+      w="100%"
+      h="80%"
+      mx={{ base: undefined, lg: "45px" }}
+      direction={{ base: "column", md: "row" }}
+      position="relative"
+      bottom={{ base: "65px", md: "unset" }}
+    >
       <ProfileAvatarAndButtons />
       <Devider />
       <ProfileData />

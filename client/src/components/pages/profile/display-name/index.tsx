@@ -11,7 +11,7 @@ const DisplayNameBox = ({ user }: { user: User | null }) => {
       <Text fontSize="20px" color="#0496FF" fontFamily="ubuntu">
         Display name
       </Text>
-      <Container w="70%" rounded="md">
+      <Container w={{ base: "full", lg: "70%" }} rounded="md">
         <DisplayNameBoxForm user={user} />
       </Container>
     </Box>
