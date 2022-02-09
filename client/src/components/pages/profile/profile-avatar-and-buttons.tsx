@@ -124,7 +124,14 @@ const TabItem = ({
           />
         </MotionBox>
       )}
-      <Button _focus={{}} size="md" m="3" textColor="#0496FF" onClick={onClick}>
+      <Button
+        zIndex="1"
+        _focus={{}}
+        size="md"
+        m="3"
+        textColor="#0496FF"
+        onClick={onClick}
+      >
         {title}
       </Button>
     </Box>
