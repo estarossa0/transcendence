@@ -99,7 +99,11 @@ const AvatarConfig = () => {
 
 const TabsPanels = () => {
   return (
-    <Flex align="flex-start" flexDirection={{ base: "row", md: "column" }}>
+    <Flex
+      align="flex-start"
+      justify="center"
+      flexDirection={{ base: "row", md: "column" }}
+    >
       <Button _focus={{}} size="md" m="3" textColor="#0496FF">
         Information
       </Button>
@@ -112,7 +116,7 @@ const TabsPanels = () => {
 
 const ProfileAvatarAndButtons = () => {
   return (
-    <Box m="auto" mb="0">
+    <Box mb="0">
       <AvatarConfig />
       <TabsPanels />
     </Box>
