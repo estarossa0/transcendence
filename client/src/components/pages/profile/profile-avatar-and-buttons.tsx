@@ -8,6 +8,7 @@ import {
   Center,
   Flex,
 } from "@chakra-ui/react";
+import { MotionBox } from "components/motion/motionComponent";
 import { useUpdateAvatarMutation } from "hooks/updateAvatar";
 import { useDeleteAvatarMutation } from "hooks/useDeleteAvatarMutation";
 import { useAtomValue } from "jotai/utils";
@@ -111,7 +112,7 @@ const TabItem = ({
   return (
     <Box>
       {isSelected && (
-        <Box pos="absolute">
+        <MotionBox layoutId="highlight" pos="absolute">
           <Box
             rounded="lg"
             pos="relative"
@@ -121,7 +122,7 @@ const TabItem = ({
             h="40px"
             bgColor="#e3e3e3"
           />
-        </Box>
+        </MotionBox>
       )}
       <Button _focus={{}} size="md" m="3" textColor="#0496FF" onClick={onClick}>
         {title}
