@@ -118,7 +118,7 @@ const TabItem = ({
             pos="relative"
             top="11px"
             left="15px"
-            w="135px"
+            w="111px"
             h="40px"
             bgColor="#e3e3e3"
           />
