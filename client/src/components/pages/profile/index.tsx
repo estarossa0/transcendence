@@ -35,9 +35,9 @@ const Profile = () => {
 
   return (
     <Stack
-      w="100%"
+      w="95%"
       h="80%"
-      mx={{ base: undefined, lg: "45px" }}
+      mx={{ base: undefined, lg: "20px" }}
       direction={{ base: "column", md: "row" }}
       position="relative"
       bottom={{ base: "65px", md: "unset" }}
