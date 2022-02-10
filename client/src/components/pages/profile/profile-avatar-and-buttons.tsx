@@ -8,6 +8,7 @@ import {
   Center,
   Flex,
 } from "@chakra-ui/react";
+import { MotionBox } from "components/motion/motionComponent";
 import { useUpdateAvatarMutation } from "hooks/updateAvatar";
 import { useDeleteAvatarMutation } from "hooks/useDeleteAvatarMutation";
 import { useAtomValue } from "jotai/utils";
@@ -97,19 +98,64 @@ const AvatarConfig = () => {
   );
 };
 
+const TabItem = ({
+  selected,
+  title,
+  onClick,
+}: {
+  selected: string;
+  title: string;
+  onClick: () => void;
+}) => {
+  const isSelected = title === selected;
+
+  return (
+    <Box>
+      {isSelected && (
+        <MotionBox layoutId="highlight" pos="absolute">
+          <Box
+            rounded="lg"
+            pos="relative"
+            top="11px"
+            left="15px"
+            w="111px"
+            h="40px"
+            bgColor="#e3e3e3"
+          />
+        </MotionBox>
+      )}
+      <Button
+        zIndex="1"
+        _focus={{}}
+        size="md"
+        m="3"
+        textColor="#0496FF"
+        onClick={onClick}
+      >
+        {title}
+      </Button>
+    </Box>
+  );
+};
+
 const TabsPanels = () => {
+  const tabs = ["Information", "Friends"];
+  const [selected, setSelected] = useState("Information");
+
   return (
     <Flex
       align="flex-start"
       justify="center"
       flexDirection={{ base: "row", md: "column" }}
     >
-      <Button _focus={{}} size="md" m="3" textColor="#0496FF">
-        Information
-      </Button>
-      <Button _focus={{}} size="md" m="3" textColor="#757780">
-        Friends
-      </Button>
+      {tabs.map((tab) => (
+        <TabItem
+          selected={selected}
+          title={tab}
+          key={tab}
+          onClick={() => setSelected(tab)}
+        />
+      ))}
     </Flex>
   );
 };
