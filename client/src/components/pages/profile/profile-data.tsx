@@ -7,6 +7,7 @@ import {
   useToast,
   Skeleton,
   Center,
+  Button,
 } from "@chakra-ui/react";
 import { useAtomValue } from "jotai/utils";
 import React from "react";
@@ -14,6 +15,7 @@ import { MdContentCopy } from "react-icons/md";
 import { userAtom } from ".";
 import { User } from "hooks";
 import DisplayNameBox from "./display-name";
+import Link from "next/link";
 
 const IdBox = ({ user }: { user: User | null }) => {
   const { onCopy } = useClipboard(user?.id || "");
@@ -68,6 +70,30 @@ const IdBox = ({ user }: { user: User | null }) => {
   );
 };
 
+const LogoutButton = () => {
+  return (
+    <Flex w={{ base: "full", lg: "70%" }} marginTop="25px" justify="flex-end">
+      <Link href="/api/auth/logout">
+        <Button
+          cursor="pointer"
+          htmlFor="upload"
+          as="label"
+          _active={{
+            transform: "scale(0.9)",
+          }}
+          _focus={{}}
+          size="sm"
+          m={{ base: "1", md: "3" }}
+          textColor="#0496FF"
+          boxShadow="rgba(0, 0, 0, 0.16) 0px 1px 4px;"
+        >
+          Logout
+        </Button>
+      </Link>
+    </Flex>
+  );
+};
+
 const Information = () => {
   const user = useAtomValue(userAtom);
 
@@ -75,6 +101,7 @@ const Information = () => {
     <>
       <IdBox user={user} />
       <DisplayNameBox user={user} />
+      <LogoutButton />
     </>
   );
 };
