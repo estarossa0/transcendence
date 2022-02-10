@@ -1,10 +1,20 @@
-import { Box, Container, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
+import { MotionContainer } from "components/motion/motionComponent";
 import Profile from ".";
 import SpheresBackground from "../home/background/spheres-background";
 
 const ProfileContainer = () => {
+  const variants = {
+    hidden: { opacity: 0, x: 0, y: 20 },
+    enter: { opacity: 1, x: 0, y: 0 },
+  };
+
   return (
-    <Container
+    <MotionContainer
+      initial="hidden"
+      animate="enter"
+      variants={variants}
+      transition={{ duration: 0.4, type: "easeInOut" }}
       h={{ base: "full", md: "80%" }}
       pos="relative"
       mt={{ base: "90px", md: "50px" }}
@@ -27,7 +37,7 @@ const ProfileContainer = () => {
         Your profile
       </Text>
       <Profile />
-    </Container>
+    </MotionContainer>
   );
 };
 
