@@ -1,7 +1,7 @@
 # Local
 .env
 dist
-public
+public/*
 
 # Node.js
 node_modules/
