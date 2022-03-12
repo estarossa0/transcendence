@@ -8,6 +8,6 @@ generator client {
 }
 
 model User {
-  id   String @id
-  name String
+  id          String @id
+  displayName String
 }

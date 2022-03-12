@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strictPropertyInitialization": false,
     "module": "CommonJS",
     "declaration": true,
     "removeComments": true,
