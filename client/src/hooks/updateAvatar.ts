@@ -1,4 +1,3 @@
-import gql from "graphql-tag";
 import * as Urql from "urql";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -61,7 +60,7 @@ export type UpdateAvatarMutation = {
   changeAvatar: boolean;
 };
 
-export const UpdateAvatarDocument = gql`
+export const UpdateAvatarDocument = Urql.gql`
   mutation updateAvatar($file: Upload!) {
     changeAvatar(file: $file)
   }

@@ -1,4 +1,3 @@
-import gql from "graphql-tag";
 import * as Urql from "urql";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -60,7 +59,7 @@ export type DeleteAvatarMutation = {
   deleteAvatar: boolean;
 };
 
-export const DeleteAvatarDocument = gql`
+export const DeleteAvatarDocument = Urql.gql`
   mutation deleteAvatar {
     deleteAvatar
   }

@@ -43,7 +43,6 @@ const AvatarConfig = () => {
       <Avatar
         borderRadius="3xl"
         boxSize="210px"
-        alt="avatar"
         src={
           user
             ? `${process.env.NEXT_PUBLIC_API_URL}/assets/${user?.id}?t=${time}`

@@ -1,4 +1,3 @@
-import gql from "graphql-tag";
 import * as Urql from "urql";
 
 type Exact<T extends { [key: string]: unknown }> = {
@@ -33,13 +32,13 @@ type GetUserQuery = {
     | undefined;
 };
 
-const UserFieldsFragmentDoc = gql`
+const UserFieldsFragmentDoc = Urql.gql`
   fragment UserFields on user {
     id
     displayName
   }
 `;
-const GetUserDocument = gql`
+const GetUserDocument = Urql.gql`
   query getUser($userId: String!) {
     user(id: $userId) {
       ...UserFields

@@ -1,4 +1,3 @@
-import gql from "graphql-tag";
 import * as Urql from "urql";
 
 export type Maybe<T> = T | null;
@@ -64,13 +63,13 @@ export type UserFieldsFragment = {
   displayName: string;
 };
 
-export const UserFieldsFragmentDoc = gql`
+export const UserFieldsFragmentDoc = Urql.gql`
   fragment UserFields on user {
     id
     displayName
   }
 `;
-export const UpdateDiplayNameDocument = gql`
+export const UpdateDiplayNameDocument = Urql.gql`
   mutation updateDiplayName($name: String!) {
     changeDisplayName(newName: $name) {
       ...UserFields
