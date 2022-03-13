@@ -8,6 +8,6 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.use(graphqlUploadExpress({ maxFileSize: 1000000, maxFiles: 1 }));
   app.useStaticAssets(join(__dirname, "..", "public"), { prefix: "/assets" });
-  await app.listen(3000);
+  await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

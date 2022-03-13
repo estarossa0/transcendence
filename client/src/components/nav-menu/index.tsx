@@ -38,7 +38,7 @@ const NavMenuLinks = ({ isOpen, isPhone, setIsOpen }: NavMenuLinksProps) => {
 
   if (!user)
     return (
-      <Box spacing="0" w="fit-content" pos="absolute" right="15px">
+      <Box w="fit-content" pos="absolute" right="15px">
         <NavLink isOpen={true} isPhone={true} page="login" />
       </Box>
     );
@@ -58,7 +58,7 @@ const NavMenuLinks = ({ isOpen, isPhone, setIsOpen }: NavMenuLinksProps) => {
 
 function NavMenu() {
   const [isOpen, setIsOpen] = useBoolean();
-  const isPhone = useBreakpointValue({ base: true, md: false });
+  const isPhone = useBreakpointValue({ base: true, md: false }, "md");
 
   const navContainerProps = {
     onMouseLeave: () => setIsOpen.off(),
@@ -70,7 +70,11 @@ function NavMenu() {
 
   return (
     <Box as="nav" pos="fixed" {...navContainerProps}>
-      <NavMenuLinks isOpen={isOpen} isPhone={isPhone} setIsOpen={setIsOpen} />
+      <NavMenuLinks
+        isOpen={isOpen}
+        isPhone={isPhone ?? false}
+        setIsOpen={setIsOpen}
+      />
     </Box>
   );
 }
