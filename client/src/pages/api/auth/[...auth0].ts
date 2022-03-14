@@ -8,6 +8,7 @@ export default handleAuth({
           audience: "http://localhost:3000/",
           scope: "openid profile email",
         },
+        returnTo: "/profile",
       });
     } catch (error) {
       res.status(error.status || 400).end(error.message);
