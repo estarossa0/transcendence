@@ -30,7 +30,8 @@ function Model(
 
     if (frame <= 100) {
       const rotSpeed = easeOutCirc(frame / 120) * Math.PI * 20;
-      groupRef.current.rotation.z = rotSpeed / 2;
+      if (groupRef && groupRef.current)
+        groupRef.current.rotation.z = rotSpeed / 2;
     }
   });
 

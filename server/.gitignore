@@ -1,9 +1,18 @@
 # Local
 .env
 dist
+public/*
 
 # Node.js
 node_modules/
 
 # IDE - VSCode
 .vscode/*
+
+# Prisma
+*.db
+*.db-journal
+migrations
+
+# Graphql
+*.graphql

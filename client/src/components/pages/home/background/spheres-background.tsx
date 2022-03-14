@@ -3,7 +3,7 @@ import Sphere from "./sphere";
 
 function SpheresBackground() {
   return (
-    <Box name="spheres-background">
+    <Box className="spheres-background">
       <Sphere
         pos="absolute"
         top="5%"

@@ -29,13 +29,13 @@ function Scene() {
         fov: 75,
         near: 0.1,
         far: 1000,
-        position: [cameraPosition[breakpoint], 0, 0],
+        position: [cameraPosition[breakpoint ?? "md"], 0, 0],
         up: [0, 0, 1],
       }}
     >
       <Lights />
       <Suspense fallback={null}>
-        <Model playersPosition={playersPosition[breakpoint]} />
+        <Model playersPosition={playersPosition[breakpoint ?? "md"]} />
       </Suspense>
     </Canvas>
   );
@@ -43,7 +43,7 @@ function Scene() {
 
 function PongGameBackground() {
   return (
-    <Box name="three-scene" w="full" h="full" pos="absolute" top="0%">
+    <Box className="three-scene" w="full" h="full" pos="absolute" top="0%">
       <Scene />
     </Box>
   );
